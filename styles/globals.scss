@@ -1,0 +1,32 @@
+@import "./resets";
+@import "./variables";
+@import "./mixins";
+
+.full-page-centered {
+  @include flexCenter(column);
+  min-height: 100vh;
+}
+
+.simple-form {
+  @include flexCenter(column);
+  background-color: powderblue;
+  min-width: 500px;
+  min-height: 50vh;
+  input {
+    width: 90%;
+    margin: 5px 0;
+    min-height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+  }
+
+  button {
+    width: 90%;
+    min-height: 30px;
+    margin-top: 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+}

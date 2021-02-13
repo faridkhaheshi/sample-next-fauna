@@ -32,3 +32,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Setting up the database
+
+To setup the database along with all roles and functions, you must send a `GET` request to the following url providing a valid faunadb admin key:
+
+```
+/api/admin/database/setup?secret=ADMIN_SECRET
+```
