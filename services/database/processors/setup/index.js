@@ -2,9 +2,6 @@ import faunadb, { query as q } from "faunadb";
 import {
   createAccountsCollection,
   createDinosCollection,
-  deleteAccountsCollection,
-  deleteAllAccounts,
-  deleteAllDinos,
   populateAccounts,
   populateDinos,
 } from "./collections";
@@ -16,6 +13,7 @@ import {
   createRegisterFunctionRole,
 } from "./roles";
 import { createLoginFunction, createRegisterFunction } from "./functions";
+import { createBootstrapKey } from "./keys";
 
 export const setUpDatabase = async (secret) => {
   console.log("setting up database...");
@@ -63,12 +61,17 @@ export const setUpDatabase = async (secret) => {
   console.log("-------------");
   console.log(`Populating data:`);
 
-  // await deleteAllAccounts(client);
-  // await deleteAllDinos(client);
-
   if (accountsResult) await populateAccounts(client);
   if (dinosResult) await populateDinos(client);
 
   console.log("\n");
   console.log("database setup completed.");
+
+  console.log("\n");
+  console.log("Creating bootstrap key");
+
+  const bootstrapKey = await createBootstrapKey(client);
+  console.log("Done");
+
+  return bootstrapKey.secret;
 };

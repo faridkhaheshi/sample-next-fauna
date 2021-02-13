@@ -8,9 +8,9 @@ const handleReqs = async (req, res) => {
   } = req;
   if (secret !== process.env.FAUNA_ADMIN_SECRET)
     throw new UnauthorizedError("You must know what you are doing!");
-  await setUpDatabase(secret);
+  const bootstrapSecret = await setUpDatabase(secret);
   res.statusCode = 200;
-  res.json({ done: true });
+  res.json({ done: true, bootstrapSecret });
 };
 
 export default withErrorHandling(handleReqs);
